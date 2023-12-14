@@ -54,3 +54,4 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./build
           force_orphan: true
+          full_commit_message: ${{ github.event.head_commit.message }}
