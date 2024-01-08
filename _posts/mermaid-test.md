@@ -7,8 +7,6 @@ date: "2023-12-17"
 
 # Markdown Test
 
----
-
 ## References
 
 - [Mermaid Live Editor](https://mermaid-js.github.io/mermaid-live-editor)

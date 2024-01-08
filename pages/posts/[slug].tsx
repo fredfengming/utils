@@ -9,7 +9,6 @@ import type PostType from "../../interfaces/post";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
 import ReactMarkdown from "react-markdown";
 import Script from "next/script";
-import remarkRehype from "remark-rehype";
 
 type Props = {
   post: PostType;

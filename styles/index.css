@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 .dark {
-    @apply bg-gray-800 text-zinc-50;
+    background-color: #0d1117;
+    @apply text-zinc-50;
  }
