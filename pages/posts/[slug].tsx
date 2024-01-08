@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
-import markdownStyles from "../../components/markdown-styles.module.css";
+import markdownStyles from "../../styles/markdown-styles.module.css";
 import PostTitle from "../../components/post-title";
 import type PostType from "../../interfaces/post";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
