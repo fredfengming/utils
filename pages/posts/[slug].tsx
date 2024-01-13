@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
-import markdownStyles from "../../styles/markdown-styles.module.css";
 import PostTitle from "../../components/post-title";
 import type PostType from "../../interfaces/post";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
@@ -25,17 +24,13 @@ export default function Post({ post }: Props) {
     <Layout>
       <Container>
         <>
-          <article className="mb-32">
-            <Head>
-              <title>{title}</title>
-            </Head>
-            <PostTitle>{title}</PostTitle>
+          <Head>
+            <title>{title}</title>
+          </Head>
+          <PostTitle>{title}</PostTitle>
 
-            <div className="max-w-8xl mx-auto">
-              <div className={markdownStyles["markdown"]}>
-                <ReactMarkdown>{post.content}</ReactMarkdown>
-              </div>
-            </div>
+          <article className="prose dark:prose-invert lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
+            <ReactMarkdown>{post.content}</ReactMarkdown>
             <Script
               type="module"
               strategy="afterInteractive"

@@ -7,6 +7,13 @@ date: "2023-12-17"
 
 # Markdown Test
 
+> Mermaid is a cool!
+
+```shell
+# comment
+sudo ls /
+```
+
 ## References
 
 - [Mermaid Live Editor](https://mermaid-js.github.io/mermaid-live-editor)
