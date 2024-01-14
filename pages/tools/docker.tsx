@@ -3,17 +3,27 @@ import Container from "../../components/container";
 import Layout from "../../components/layout";
 import TextBox from "../../components/form/textbox";
 import Checkbox from "../../components/form/checkbox";
-import Textarea from "../../components/form/textarea";
 import { useState } from "react";
-import Navbar from "../../components/navbar";
+import Nav from "../../components/nav";
 
 export default function Index() {
   const [image, setImage] = useState("");
   const [tag, setTag] = useState("latest");
+  const [command, setCommand] = useState("");
+
   const [interactive, setInteractive] = useState(true);
 
   function generateCommand() {
-    return "docker run -it " + image + ":" + tag;
+    if (!image || !command) {
+      return "";
+    }
+
+    const lines: string[] = [];
+    lines.push("docker");
+    lines.push(command);
+    lines.push("-it");
+    lines.push(`${image}:${tag}`);
+    return lines.join(" ");
   }
 
   return (
@@ -22,7 +32,7 @@ export default function Index() {
         <Head>
           <title>Docker</title>
         </Head>
-        <Navbar />
+        <Nav />
         <Container>
           <section className="lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
             <h2 className="dark mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
@@ -37,6 +47,19 @@ export default function Index() {
               />
 
               <TextBox title="Tag" text={tag} id="tag" onChange={setTag} />
+
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Command:
+                <select
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={command}
+                  onChange={(e) => setCommand(e.target.value)}
+                >
+                  <option value="">select one command</option>
+                  <option value="run">run</option>
+                  <option value="exec">exec</option>
+                </select>
+              </label>
 
               <Checkbox title="Interactive" id="interactive" />
 

@@ -8,7 +8,7 @@ import type PostType from "../../interfaces/post";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
 import ReactMarkdown from "react-markdown";
 import Script from "next/script";
-import Navbar from "../../components/navbar";
+import Nav from "../../components/nav";
 
 type Props = {
   post: PostType;
@@ -23,7 +23,7 @@ export default function Post({ post }: Props) {
   }
   return (
     <Layout>
-      <Navbar />
+      <Nav />
       <Container>
         <>
           <Head>
