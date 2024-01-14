@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import PostPreview from "../components/post-preview";
 import Post from "../interfaces/post";
 import { getAllPosts } from "../lib/api";
+import Navbar from "../components/navbar";
 
 type Props = {
   allPosts: Post[];
@@ -13,6 +14,8 @@ export default function Index({ allPosts }: Props) {
   return (
     <>
       <Layout>
+        <Navbar />
+
         <Head>
           <title>{`Blog Example`}</title>
         </Head>

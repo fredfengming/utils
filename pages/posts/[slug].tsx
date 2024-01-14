@@ -8,6 +8,7 @@ import type PostType from "../../interfaces/post";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
 import ReactMarkdown from "react-markdown";
 import Script from "next/script";
+import Navbar from "../../components/navbar";
 
 type Props = {
   post: PostType;
@@ -22,12 +23,12 @@ export default function Post({ post }: Props) {
   }
   return (
     <Layout>
+      <Navbar />
       <Container>
         <>
           <Head>
             <title>{title}</title>
           </Head>
-          <PostTitle>{title}</PostTitle>
 
           <article className="prose dark:prose-invert lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
             <ReactMarkdown>{post.content}</ReactMarkdown>
