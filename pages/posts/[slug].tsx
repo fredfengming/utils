@@ -5,7 +5,7 @@ import Container from "../../components/container";
 import Layout from "../../components/layout";
 import PostTitle from "../../components/post-title";
 import type PostType from "../../interfaces/post";
-import { getAllPosts, getPostBySlug } from "../../lib/api";
+import { getAllPosts, getPostByFilename } from "../../lib/api";
 import ReactMarkdown from "react-markdown";
 import Script from "next/script";
 import Nav from "../../components/nav";
@@ -60,7 +60,7 @@ type Params = {
 };
 
 export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, [
+  const post = getPostByFilename(params.slug + ".md", [
     "title",
     "date",
     "slug",
@@ -69,12 +69,6 @@ export async function getStaticProps({ params }: Params) {
     "ogImage",
     "coverImage",
   ]);
-
-  // const content = (
-  //   await remark()
-  //     .use(html)
-  //     .process(post.content || "")
-  // ).toString();
 
   return {
     props: {

@@ -5,6 +5,7 @@ import PostPreview from "../components/post-preview";
 import Post from "../interfaces/post";
 import { getAllPosts } from "../lib/api";
 import Nav from "../components/nav";
+import Header from "../components/header";
 
 type Props = {
   allPosts: Post[];
@@ -13,12 +14,28 @@ type Props = {
 export default function Index({ allPosts }: Props) {
   return (
     <>
+      <Head>
+        <title>{`Blog Example`}</title>
+      </Head>
+
       <Layout>
+        <Header />
         <Nav />
 
-        <Head>
-          <title>{`Blog Example`}</title>
-        </Head>
+        <article className="prose dark:prose-invert lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
+          <h1>Thanks for visiting </h1>
+          <div>
+            <p>This is a WordPress based site for personal wiki usage only. </p>
+
+            <p>
+              You are welcome to use any resources provided by this site however
+              please understand it is not guerenteed that services are stable.{" "}
+            </p>
+
+            <p>Have fun!</p>
+          </div>
+        </article>
+
         <Container>
           {allPosts.length > 0 && (
             <section>
