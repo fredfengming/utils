@@ -2,7 +2,7 @@ import { AppProps } from "next/app";
 import Script from "next/script";
 import "../styles/index.css";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script

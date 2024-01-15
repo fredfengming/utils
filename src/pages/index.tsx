@@ -1,17 +1,13 @@
 import Head from "next/head";
 import Container from "../components/container";
+import Header from "../components/header";
 import Layout from "../components/layout";
+import Nav from "../components/nav";
 import PostPreview from "../components/post-preview";
 import { Post } from "../interfaces/post";
-import { getAllPosts, getPosts } from "../lib/api";
-import Nav from "../components/nav";
-import Header from "../components/header";
+import { getPosts } from "../lib/api";
 
-type Props = {
-  posts: Post[];
-};
-
-export default function Index({ posts }: Props) {
+export default function Index({ posts }: { posts: Post[] }) {
   return (
     <>
       <Head>

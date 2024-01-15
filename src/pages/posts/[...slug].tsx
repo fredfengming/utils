@@ -1,23 +1,18 @@
 import ErrorPage from "next/error";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Script from "next/script";
+import ReactMarkdown from "react-markdown";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
-import type PostType from "../../interfaces/post";
-import { getAllPosts, getPostByFilename } from "../../lib/api";
-import ReactMarkdown from "react-markdown";
-import Script from "next/script";
 import Nav from "../../components/nav";
+import { Post } from "../../interfaces/post";
+import { getPost, getPosts } from "../../lib/api";
 
-type Props = {
-  post: PostType;
-  morePosts: PostType[];
-};
-
-export default function Post({ post }: Props) {
+export default function PostPage({ post }: { post: Post }) {
   const router = useRouter();
   const title = `${post.title}`;
-  if (!router.isFallback && !post?.slug) {
+  if (!router.isFallback && !post?.path) {
     return <ErrorPage statusCode={404} />;
   }
   return (
@@ -52,40 +47,32 @@ export default function Post({ post }: Props) {
   );
 }
 
-type Params = {
+export async function getStaticProps(context: {
   params: {
     slug: string[];
   };
-};
-
-export async function getStaticProps({ params }: Params) {
-  const post = getPostByFilename(params.slug.join("/") + ".md", [
-    "title",
-    "date",
-    "slug",
-    "author",
-    "content",
-    "ogImage",
-    "coverImage",
-  ]);
+}) {
+  const file = context.params.slug.join("/") + ".md";
+  const post = getPost(file);
   return {
     props: {
-      post: {
-        ...post,
-        //content,
-      },
+      post,
     },
   };
 }
 
+/**
+ * For NextJs static render
+ * https://nextjs.org/docs/pages/api-reference/functions/get-static-paths
+ */
 export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"]);
+  const posts = getPosts();
 
   return {
     paths: posts.map((post) => {
       return {
         params: {
-          slug: post.slug.split("/"),
+          slug: post.path.split("/"),
         },
       };
     }),
