@@ -6,8 +6,8 @@ import ReactMarkdown from "react-markdown";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
 import Nav from "../../components/nav";
-import { Post } from "../../interfaces/post";
-import { getPost, getPosts } from "../../lib/api";
+import { Post } from "../../entities/post";
+import { getPost, getPosts } from "../../app/post";
 
 export default function PostPage({ post }: { post: Post }) {
   const router = useRouter();

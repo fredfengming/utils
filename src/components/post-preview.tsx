@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
-import { Post } from "../interfaces/post";
+import { Post } from "../entities/post";
 
 type Props = {
   post: Post;

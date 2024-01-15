@@ -4,8 +4,8 @@ import Header from "../components/header";
 import Layout from "../components/layout";
 import Nav from "../components/nav";
 import PostPreview from "../components/post-preview";
-import { Post } from "../interfaces/post";
-import { getPosts } from "../lib/api";
+import { Post } from "../entities/post";
+import { getPosts } from "../app/post";
 
 export default function Index({ posts }: { posts: Post[] }) {
   return (
