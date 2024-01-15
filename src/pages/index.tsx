@@ -6,12 +6,13 @@ import Nav from "../components/nav";
 import PostPreview from "../components/post-preview";
 import { Post } from "../entities/post";
 import { getPosts } from "../app/post";
+import { appConfig } from "../app/app.config";
 
 export default function Index({ posts }: { posts: Post[] }) {
   return (
     <>
       <Head>
-        <title>{`Blog Example`}</title>
+        <title>{appConfig.siteName}</title>
       </Head>
 
       <Layout>

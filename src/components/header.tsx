@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { appConfig } from "../app/app.config";
 
 const Header = () => {
   return (
@@ -18,7 +19,7 @@ const Header = () => {
                 href="/"
                 rel="home"
               >
-                Ming's Wiki
+                {appConfig.siteName}
               </Link>
             </div>
 
