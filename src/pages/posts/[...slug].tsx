@@ -9,6 +9,7 @@ import Header from "../../components/header";
 import Layout from "../../components/layout";
 import Nav from "../../components/nav";
 import { Post } from "../../entities/post";
+import remarkGfm from "remark-gfm";
 
 export default function PostPage({ post }: { post: Post }) {
   const router = useRouter();
@@ -27,7 +28,9 @@ export default function PostPage({ post }: { post: Post }) {
           </Head>
 
           <article className="prose dark:prose-invert lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
-            <ReactMarkdown>{post.content}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {post.content}
+            </ReactMarkdown>
             <Script
               type="module"
               strategy="afterInteractive"
