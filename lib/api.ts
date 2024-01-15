@@ -4,6 +4,7 @@ import path, { join } from "path";
 import { Post } from "../interfaces/post";
 
 const postsDirectory = join(process.cwd(), "_posts");
+const postsImageCoverDirectory = join(process.cwd(), "public/assets/posts");
 
 export function getPostByFilename(filename: string, fields: string[] = []) {
   const fileContent = fs.readFileSync(
@@ -76,11 +77,27 @@ export function getPost(file: string): Post {
   );
   const { data, content } = matter(fileContent);
 
+  const postPath = file.replace(".md", "");
+  const coverImageLocalPath = path.resolve(
+    postsImageCoverDirectory,
+    postPath + ".cover.jpg"
+  );
+
+  const doesImageCoverExist =
+    fs.existsSync(coverImageLocalPath) &&
+    fs.statSync(coverImageLocalPath).isFile();
+
+  console.log(
+    `coverImageLocalPath: ${coverImageLocalPath}, result: ${doesImageCoverExist}`
+  );
+
   return {
-    path: file.replace(".md", ""),
+    path: postPath,
     title: data["title"] ?? "",
     date: data["date"] ?? "",
-    coverImagePath: data["cover"] ?? "",
+    coverImagePath: doesImageCoverExist
+      ? path.join("/assets/posts", postPath + ".cover.jpg")
+      : null,
     content,
   };
 }
