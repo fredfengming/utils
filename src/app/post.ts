@@ -4,7 +4,7 @@ import { extname, join, resolve } from "path";
 import { Post } from "../entities/post";
 import { getAllFiles } from "./utils/file";
 
-const POST_DIR = join(process.cwd(), "_posts");
+const POST_DIR = join(process.cwd(), "posts");
 const COVER_IMAGE_DIR = join(process.cwd(), "public/assets/posts");
 
 export function getPost(file: string): Post {
