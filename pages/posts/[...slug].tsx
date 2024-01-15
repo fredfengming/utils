@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
-import PostTitle from "../../components/post-title";
 import type PostType from "../../interfaces/post";
 import { getAllPosts, getPostByFilename } from "../../lib/api";
 import ReactMarkdown from "react-markdown";
@@ -55,12 +54,12 @@ export default function Post({ post }: Props) {
 
 type Params = {
   params: {
-    slug: string;
+    slug: string[];
   };
 };
 
 export async function getStaticProps({ params }: Params) {
-  const post = getPostByFilename(params.slug + ".md", [
+  const post = getPostByFilename(params.slug.join("/") + ".md", [
     "title",
     "date",
     "slug",
@@ -69,7 +68,6 @@ export async function getStaticProps({ params }: Params) {
     "ogImage",
     "coverImage",
   ]);
-
   return {
     props: {
       post: {
@@ -87,7 +85,7 @@ export async function getStaticPaths() {
     paths: posts.map((post) => {
       return {
         params: {
-          slug: post.slug,
+          slug: post.slug.split("/"),
         },
       };
     }),

@@ -50,7 +50,7 @@ export default function Index({ allPosts }: Props) {
                     coverImage={post.coverImage}
                     date={post.date}
                     author={post.author}
-                    slug={post.slug}
+                    slug={post.slug.split("/")}
                     excerpt={post.excerpt}
                   />
                 ))}
