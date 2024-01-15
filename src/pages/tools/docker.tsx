@@ -1,9 +1,10 @@
 import Head from "next/head";
-import Container from "../../components/container";
-import Layout from "../../components/layout";
-import TextBox from "../../components/form/textbox";
-import Checkbox from "../../components/form/checkbox";
 import { useState } from "react";
+import Container from "../../components/container";
+import Checkbox from "../../components/form/checkbox";
+import TextBox from "../../components/form/textbox";
+import Header from "../../components/header";
+import Layout from "../../components/layout";
 import Nav from "../../components/nav";
 
 export default function Index() {
@@ -32,6 +33,7 @@ export default function Index() {
         <Head>
           <title>Docker</title>
         </Head>
+        <Header />
         <Nav />
         <Container>
           <section className="lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">

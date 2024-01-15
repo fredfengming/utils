@@ -3,11 +3,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import ReactMarkdown from "react-markdown";
+import { getPost, getPosts } from "../../app/post";
 import Container from "../../components/container";
+import Header from "../../components/header";
 import Layout from "../../components/layout";
 import Nav from "../../components/nav";
 import { Post } from "../../entities/post";
-import { getPost, getPosts } from "../../app/post";
 
 export default function PostPage({ post }: { post: Post }) {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function PostPage({ post }: { post: Post }) {
   }
   return (
     <Layout>
+      <Header />
       <Nav />
       <Container>
         <>
