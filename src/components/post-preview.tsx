@@ -31,7 +31,7 @@ const PostPreview = ({ post }: Props) => {
       <div className="text-lg mb-4">
         <DateFormatter dateString={post.date} />
       </div>
-      <p className="text-lg leading-relaxed mb-4">{post.title}</p>
+      <p className="text-lg leading-relaxed mb-4">{post.excerpt}</p>
     </div>
   );
 };

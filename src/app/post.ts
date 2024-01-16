@@ -27,6 +27,7 @@ export function getPost(file: string): Post {
   return {
     path,
     title: data["title"] ?? "",
+    excerpt: data["excerpt"] ?? "",
     date: data["date"] ?? "",
     coverImagePath: doesImageCoverExist ? coverImagePath : null,
     content,
