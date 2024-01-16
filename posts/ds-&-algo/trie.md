@@ -1,12 +1,12 @@
 ---
-title: "前缀树 Trie"
-excerpt: "前缀树是具有索引的树状数据结构，它的检索性能优秀，其索引也对内存空间用量进行压缩。"
+title: "Trie"
+excerpt: "Trie is a tree data structure with an index on each node, it is efficient for searching, and its indices compresses memory space as well"
 date: "2020-03-16T05:35:07.322Z"
 ---
 
 # Trie
 
-英文单个字母为节点的前缀树，其构建方法如下
+Below is an method that builds Trie for alphabet char-based indices.
 
 ```java
 class TrieNode {
