@@ -1,5 +1,5 @@
 import Link from "next/link";
-import CoverImage from "./cover-image";
+import Image from "next/image";
 import DateFormatter from "./date-formatter";
 import { Post } from "../entities/post";
 
@@ -12,11 +12,19 @@ const PostPreview = ({ post }: Props) => {
     <div>
       {post.coverImagePath && (
         <div className="mb-5">
-          <CoverImage
-            path={post.path}
-            title={post.title}
-            src={post.coverImagePath}
-          />
+          <Link
+            as={`/posts/${post.path}`}
+            href="/posts/[...slug]"
+            aria-label={post.title}
+          >
+            <Image
+              src={post.coverImagePath}
+              alt={`Cover Image for ${post.title}`}
+              className="shadow-sm w-full"
+              width={1300}
+              height={630}
+            />
+          </Link>
         </div>
       )}
       <h3 className="text-3xl mb-3 leading-snug">
