@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { appConfig } from "../app/app.config";
+import Container from "./container";
 
 const Header = () => {
   return (
@@ -11,27 +12,29 @@ const Header = () => {
           backgroundImage: "url('/assets/header.jpg')",
         }}
       >
-        <div className="container mx-auto px-4 flex flex-nowrapflex-row-reverse">
-          <div className="flex-auto m-auto">
-            <Link
-              className="bg-black align-middle bg-opacity-50 text-5xl font-bold"
-              href="/"
-              rel="home"
-            >
-              {appConfig.siteName}
-            </Link>
-          </div>
+        <Container>
+          <div className="flex flex-nowrapflex-row-reverse">
+            <div className="flex-auto m-auto">
+              <Link
+                className="bg-black align-middle bg-opacity-50 text-5xl font-bold"
+                href="/"
+                rel="home"
+              >
+                {appConfig.siteName}
+              </Link>
+            </div>
 
-          <div className="flex-none w-16 md:w-32">
-            <Image
-              className="rotate-12 rounded-xl md:w-32:rounded-4xl "
-              width="128"
-              height="128"
-              alt="Avatar"
-              src="/assets/avatar.jpg"
-            />
+            <div className="flex-none w-16 md:w-32">
+              <Image
+                className="rotate-12 rounded-xl md:w-32:rounded-4xl "
+                width="128"
+                height="128"
+                alt="Avatar"
+                src="/assets/avatar.jpg"
+              />
+            </div>
           </div>
-        </div>
+        </Container>
       </div>
     </>
   );
