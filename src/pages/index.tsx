@@ -17,23 +17,25 @@ export default function Index({ posts }: { posts: Post[] }) {
 
       <Layout>
         <Header />
-        <Nav />
-
-        <article className="prose dark:prose-invert lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
-          <h1>Thanks for visiting </h1>
-          <div>
-            <p>This is a WordPress based site for personal wiki usage only. </p>
-
-            <p>
-              You are welcome to use any resources provided by this site however
-              please understand it is not guerenteed that services are stable.{" "}
-            </p>
-
-            <p>Have fun!</p>
-          </div>
-        </article>
 
         <Container>
+          <article className="prose dark:prose-invert lg:prose-xl">
+            <h1>Thanks for visiting </h1>
+            <div>
+              <p>
+                This is a WordPress based site for personal wiki usage only.{" "}
+              </p>
+
+              <p>
+                You are welcome to use any resources provided by this site
+                however please understand it is not guerenteed that services are
+                stable.{" "}
+              </p>
+
+              <p>Have fun!</p>
+            </div>
+          </article>
+
           {posts.length > 0 && (
             <section>
               <h2 className="dark mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight">

@@ -34,12 +34,15 @@ export default function Index() {
           <title>Docker</title>
         </Head>
         <Header />
-        <Nav />
         <Container>
-          <section className="lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
-            <h2 className="dark mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
-              Docker command builder
-            </h2>
+          <article className="prose dark:prose-invert lg:prose-xl">
+            <h3>GUI Docker Command Builder</h3>
+            <div>
+              <p>Simplify docker commands building with GUI</p>
+            </div>
+          </article>
+
+          <div>
             <form>
               <TextBox
                 title="Image"
@@ -71,7 +74,7 @@ export default function Index() {
                 </pre>
               </article>
             </form>
-          </section>
+          </div>
         </Container>
       </Layout>
     </>

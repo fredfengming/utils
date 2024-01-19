@@ -1,31 +1,32 @@
 import React from "react";
 import Link from "next/link";
+import Container from "./container";
 
 const Nav = () => {
   return (
     <>
-      <div className="w-full h-20 sticky top-0">
-        <div className="container mx-auto px-4 h-full">
+      <div className="w-full h-10 mb-5 bg-gray-900">
+        <Container>
           <div className="flex justify-between items-center h-full">
-            <ul className="hidden md:flex gap-x-6 text-white">
+            <ul className="flex gap-x-6 text-white">
               <li>
-                <Link href="/">
-                  <p>Home</p>
+                <Link href="/" className="block py-2 pr-1 md:pr-2">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="/tools/docker">
-                  <p>docker</p>
+                <Link href="/tools/docker" className="block py-2 pr-1 md:pr-2">
+                  docker
                 </Link>
               </li>
               <li>
-                <Link href="/tools/kubectl">
-                  <p>kubectl</p>
+                <Link href="/tools/kubectl" className="block py-2 pr-1 md:pr-2">
+                  kubectl
                 </Link>
               </li>
             </ul>
           </div>
-        </div>
+        </Container>
       </div>
     </>
   );
