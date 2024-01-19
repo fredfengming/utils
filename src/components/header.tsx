@@ -11,20 +11,20 @@ const Header = () => {
           backgroundImage: "url('/assets/header.jpg')",
         }}
       >
-        <div className="w-full">
-          <div className="container mx-auto flex flex-nowrapflex-row-reverse">
-            <div className="flex-auto m-auto">
-              <Link
-                className="bg-black p-4 align-middle bg-opacity-50 text-5xl font-bold"
-                href="/"
-                rel="home"
-              >
-                {appConfig.siteName}
-              </Link>
-            </div>
+        <div className="container mx-auto px-4 flex flex-nowrapflex-row-reverse">
+          <div className="flex-auto m-auto">
+            <Link
+              className="bg-black align-middle bg-opacity-50 text-5xl font-bold"
+              href="/"
+              rel="home"
+            >
+              {appConfig.siteName}
+            </Link>
+          </div>
 
+          <div className="flex-none w-16 md:w-32">
             <Image
-              className="flex-none rounded-3xl rotate-12"
+              className="rotate-12 rounded-xl md:w-32:rounded-4xl "
               width="128"
               height="128"
               alt="Avatar"
