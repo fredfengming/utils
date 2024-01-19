@@ -18,16 +18,14 @@ export default function PostPage({ post }: { post: Post }) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <Layout>
-      <Header />
-      <Nav />
-      <Container>
-        <>
-          <Head>
-            <title>{title}</title>
-          </Head>
-
-          <article className="prose dark:prose-invert lg:prose-xl mx-auto md:max-w-3xl lg:max-w-4xl">
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Layout>
+        <Header />
+        <Container>
+          <article className="prose dark:prose-invert lg:prose-xl">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {post.content}
             </ReactMarkdown>
@@ -46,9 +44,9 @@ export default function PostPage({ post }: { post: Post }) {
               }}
             />
           </article>
-        </>
-      </Container>
-    </Layout>
+        </Container>
+      </Layout>
+    </>
   );
 }
 

@@ -31,7 +31,7 @@ export default function Index() {
     <>
       <Layout>
         <Head>
-          <title>Docker</title>
+          <title>GUI Docker Command Builder</title>
         </Head>
         <Header />
         <Container>

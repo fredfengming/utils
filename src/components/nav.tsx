@@ -10,11 +10,6 @@ const Nav = () => {
           <div className="flex justify-between items-center h-full">
             <ul className="flex gap-x-6 text-white">
               <li>
-                <Link href="/" className="block py-2 pr-1 md:pr-2">
-                  Home
-                </Link>
-              </li>
-              <li>
                 <Link href="/tools/docker" className="block py-2 pr-1 md:pr-2">
                   docker
                 </Link>
