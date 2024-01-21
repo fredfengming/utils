@@ -1,18 +1,12 @@
 ---
-title: "Mermaid Test"
-excerpt: "Test Mermaid diagrams"
-coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+title: "Mermaid"
+excerpt: "JavaScript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically."
 date: "2023-12-17"
 ---
 
-# Markdown Test
+# Mermaid
 
-> Mermaid is a cool!
-
-```shell
-# comment
-sudo ls /
-```
+> JavaScript based diagramming and charting tool that renders Markdown-inspired text definitions to create and modify diagrams dynamically.
 
 ## References
 

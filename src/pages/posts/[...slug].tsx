@@ -3,13 +3,13 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { appConfig } from "../../app/app.config";
 import { getPost, getPosts } from "../../app/post";
 import Container from "../../components/container";
 import Header from "../../components/header";
 import Layout from "../../components/layout";
-import Nav from "../../components/nav";
 import { Post } from "../../entities/post";
-import remarkGfm from "remark-gfm";
 
 export default function PostPage({ post }: { post: Post }) {
   const router = useRouter();
@@ -20,7 +20,9 @@ export default function PostPage({ post }: { post: Post }) {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>
+          {title} - {appConfig.siteName}
+        </title>
       </Head>
       <Layout>
         <Header />

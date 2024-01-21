@@ -1,14 +1,31 @@
 import Head from "next/head";
+import { appConfig } from "../app/app.config";
+import { getPosts } from "../app/post";
 import Container from "../components/container";
+import Greeting from "../components/greeting";
 import Header from "../components/header";
 import Layout from "../components/layout";
-import Nav from "../components/nav";
 import PostPreview from "../components/post-preview";
 import { Post } from "../entities/post";
-import { getPosts } from "../app/post";
-import { appConfig } from "../app/app.config";
+import LinkList from "../components/link-list";
 
-export default function Index({ posts }: { posts: Post[] }) {
+export default function Index({
+  posts,
+  recentPostLinks,
+  utilLinks,
+}: {
+  posts: Post[];
+  recentPostLinks: {
+    text: string;
+    href: string;
+  }[];
+  utilLinks: {
+    text: string;
+    href: string;
+  }[];
+}) {
+  const utils = [{ title: "hi", path: "/utils/docker" }];
+
   return (
     <>
       <Head>
@@ -19,35 +36,28 @@ export default function Index({ posts }: { posts: Post[] }) {
         <Header />
 
         <Container>
-          <article className="prose dark:prose-invert lg:prose-xl">
-            <h1>Thanks for visiting </h1>
-            <div>
-              <p>
-                This is a WordPress based site for personal wiki usage only.{" "}
-              </p>
+          <div className="grid grid-cols-5 gap-3">
+            <div className="col-span-5 md:col-span-4">
+              <Greeting />
 
-              <p>
-                You are welcome to use any resources provided by this site
-                however please understand it is not guerenteed that services are
-                stable.{" "}
-              </p>
-
-              <p>Have fun!</p>
+              {posts.length > 0 && (
+                <section>
+                  <h2 className="dark mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+                    Posts
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
+                    {posts.map((post) => (
+                      <PostPreview post={post} />
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
-          </article>
-
-          {posts.length > 0 && (
-            <section>
-              <h2 className="dark mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
-                Posts
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
-                {posts.map((post) => (
-                  <PostPreview post={post} />
-                ))}
-              </div>
-            </section>
-          )}
+            <div className="hidden md:col-span-1 md:block">
+              <LinkList listName="Utilities" items={utilLinks} />
+              <LinkList listName="Recent Posts" items={recentPostLinks} />
+            </div>
+          </div>
         </Container>
       </Layout>
     </>
@@ -57,7 +67,19 @@ export default function Index({ posts }: { posts: Post[] }) {
 export const getStaticProps = async () => {
   const posts = getPosts();
 
+  const recentPostLinks = posts.slice(0, 10).map((item) => {
+    return {
+      text: item.title,
+      href: `/posts/${item.path}`,
+    };
+  });
+
+  const utilLinks = [
+    { text: "Docker Command Builder", href: "/tools/docker" },
+    { text: "Kubectl Command Builder", href: "/tools/kubectl" },
+  ];
+
   return {
-    props: { posts },
+    props: { posts, recentPostLinks, utilLinks },
   };
 };
