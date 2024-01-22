@@ -84,9 +84,7 @@ const Footer = () => {
     <>
       <div className="w-full py-5 bg-gray-900">
         <Container>
-          <div className="items-center">
-            <p>Copyright © 2024 Ming</p>
-          </div>
+          <p className="text-center">Copyright © 2024 Ming</p>
         </Container>
       </div>
     </>
