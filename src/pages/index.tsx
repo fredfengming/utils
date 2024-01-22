@@ -8,6 +8,7 @@ import Layout from "../components/layout";
 import PostPreview from "../components/post-preview";
 import { Post } from "../entities/post";
 import LinkList from "../components/link-list";
+import Footer from "../components/footer";
 
 export default function Index({
   posts,
@@ -59,6 +60,8 @@ export default function Index({
             </div>
           </div>
         </Container>
+
+        <Footer />
       </Layout>
     </>
   );
