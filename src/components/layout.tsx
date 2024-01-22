@@ -1,4 +1,4 @@
-import Meta from "./meta";
+import Head from "next/head";
 
 type Props = {
   children: React.ReactNode;
@@ -7,7 +7,10 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <>
-      <Meta />
+      <Head>
+        <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon" />
+        <link rel="icon" href="/favicon.jpg" type="image/x-icon" />
+      </Head>
       <div className="min-h-screen">
         <main>{children}</main>
       </div>

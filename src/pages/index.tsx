@@ -1,14 +1,11 @@
 import Head from "next/head";
 import { appConfig } from "../app/app.config";
 import { getPosts } from "../app/post";
-import Container from "../components/container";
 import Greeting from "../components/greeting";
-import Header from "../components/header";
-import Layout from "../components/layout";
+import { LinkItem } from "../components/link-list";
 import PostPreview from "../components/post-preview";
+import SidebarLayout from "../components/sidebar-layout";
 import { Post } from "../entities/post";
-import LinkList from "../components/link-list";
-import Footer from "../components/footer";
 
 export default function Index({
   posts,
@@ -16,53 +13,31 @@ export default function Index({
   utilLinks,
 }: {
   posts: Post[];
-  recentPostLinks: {
-    text: string;
-    href: string;
-  }[];
-  utilLinks: {
-    text: string;
-    href: string;
-  }[];
+  recentPostLinks: LinkItem[];
+  utilLinks: LinkItem[];
 }) {
-  const utils = [{ title: "hi", path: "/utils/docker" }];
-
   return (
     <>
       <Head>
         <title>{appConfig.siteName}</title>
       </Head>
 
-      <Layout>
-        <Header />
+      <SidebarLayout recentPostLinks={recentPostLinks} utilLinks={utilLinks}>
+        <Greeting />
 
-        <Container>
-          <div className="grid grid-cols-5 gap-3">
-            <div className="col-span-5 md:col-span-4">
-              <Greeting />
-
-              {posts.length > 0 && (
-                <section>
-                  <h2 className="dark mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
-                    Posts
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
-                    {posts.map((post) => (
-                      <PostPreview post={post} />
-                    ))}
-                  </div>
-                </section>
-              )}
+        {posts.length > 0 && (
+          <section>
+            <h2 className="dark mb-8 text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+              Posts
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
+              {posts.map((post) => (
+                <PostPreview post={post} />
+              ))}
             </div>
-            <div className="hidden md:col-span-1 md:block">
-              <LinkList listName="Utilities" items={utilLinks} />
-              <LinkList listName="Recent Posts" items={recentPostLinks} />
-            </div>
-          </div>
-        </Container>
-
-        <Footer />
-      </Layout>
+          </section>
+        )}
+      </SidebarLayout>
     </>
   );
 }

@@ -1,14 +1,14 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
-type Item = {
+export type LinkItem = {
   text: string;
   href: string;
 };
 
 type Props = {
   listName: string;
-  items: Item[];
+  items: LinkItem[];
 };
 
 const LinkList = ({ listName, items }: Props) => {

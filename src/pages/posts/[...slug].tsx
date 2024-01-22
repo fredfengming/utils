@@ -10,8 +10,16 @@ import Container from "../../components/container";
 import Header from "../../components/header";
 import Layout from "../../components/layout";
 import { Post } from "../../entities/post";
+import SidebarLayout from "../../components/sidebar-layout";
+import { LinkItem } from "../../components/link-list";
 
-export default function PostPage({ post }: { post: Post }) {
+type Props = {
+  post: Post;
+  recentPostLinks: LinkItem[];
+  utilLinks: LinkItem[];
+};
+
+export default function PostPage({ post, utilLinks, recentPostLinks }: Props) {
   const router = useRouter();
   const title = `${post.title}`;
   if (!router.isFallback && !post?.path) {
@@ -24,18 +32,17 @@ export default function PostPage({ post }: { post: Post }) {
           {title} - {appConfig.siteName}
         </title>
       </Head>
-      <Layout>
-        <Header />
-        <Container>
-          <article className="prose dark:prose-invert lg:prose-xl">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {post.content}
-            </ReactMarkdown>
-            <Script
-              type="module"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
+
+      <SidebarLayout recentPostLinks={recentPostLinks} utilLinks={utilLinks}>
+        <article className="prose dark:prose-invert lg:prose-xl">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {post.content}
+          </ReactMarkdown>
+          <Script
+            type="module"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
                 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs";
                 mermaid.initialize({startOnLoad: false, theme: 'dark'});
                       await mermaid.run({
@@ -43,25 +50,43 @@ export default function PostPage({ post }: { post: Post }) {
                         
                       });
                     `,
-              }}
-            />
-          </article>
-        </Container>
-      </Layout>
+            }}
+          />
+        </article>
+      </SidebarLayout>
     </>
   );
 }
 
-export async function getStaticProps(context: {
+type Context = {
   params: {
     slug: string[];
   };
-}) {
-  const file = context.params.slug.join("/") + ".md";
+};
+export async function getStaticProps({
+  params,
+}: Context): Promise<{ props: Props }> {
+  const posts = getPosts();
+
+  const recentPostLinks = posts.slice(0, 10).map((item) => {
+    return {
+      text: item.title,
+      href: `/posts/${item.path}`,
+    };
+  });
+
+  const utilLinks = [
+    { text: "Docker Command Builder", href: "/tools/docker" },
+    { text: "Kubectl Command Builder", href: "/tools/kubectl" },
+  ];
+
+  const file = params.slug.join("/") + ".md";
   const post = getPost(file);
   return {
     props: {
       post,
+      recentPostLinks,
+      utilLinks,
     },
   };
 }
