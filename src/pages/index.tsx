@@ -1,11 +1,29 @@
 import Head from "next/head";
 import { appConfig } from "../app/app.config";
 import { getPosts } from "../app/post";
-import Greeting from "../components/greeting";
 import { LinkItem } from "../components/link-list";
 import PostPreview from "../components/post-preview";
 import SidebarLayout from "../components/sidebar-layout";
 import { Post } from "../entities/post";
+
+const Greeting = () => {
+  return (
+    <>
+      <article className="prose dark:prose-invert lg:prose-xl">
+        <h1>Thanks for visiting</h1>
+        <div>
+          <p>
+            This wiki site is a collection of my personal learning notes and
+            some utility tools. It is under slow construction but you are
+            welcome to check out existing resources.
+          </p>
+
+          <p>I hope this helps!</p>
+        </div>
+      </article>
+    </>
+  );
+};
 
 export default function Index({
   posts,

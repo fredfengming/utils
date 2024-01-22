@@ -6,12 +6,9 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { appConfig } from "../../app/app.config";
 import { getPost, getPosts } from "../../app/post";
-import Container from "../../components/container";
-import Header from "../../components/header";
-import Layout from "../../components/layout";
-import { Post } from "../../entities/post";
-import SidebarLayout from "../../components/sidebar-layout";
 import { LinkItem } from "../../components/link-list";
+import SidebarLayout from "../../components/sidebar-layout";
+import { Post } from "../../entities/post";
 
 type Props = {
   post: Post;

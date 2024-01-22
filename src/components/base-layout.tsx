@@ -2,10 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { appConfig } from "../app/app.config";
-import Container from "./container";
 
 type Props = {
   children: React.ReactNode;
+};
+const Container = ({ children }: Props) => {
+  return <div className="container mx-auto px-4">{children}</div>;
 };
 
 const Nav = () => {
@@ -37,7 +39,7 @@ const Header = () => {
   return (
     <>
       <div
-        className="flex justify-between items-center h-full bg-cover bg-center"
+        className="bg-cover bg-center"
         style={{
           backgroundImage: "url('/assets/header.jpg')",
         }}
@@ -98,12 +100,12 @@ const BaseLayout = ({ children }: Props) => {
         <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon" />
         <link rel="icon" href="/favicon.jpg" type="image/x-icon" />
       </Head>
-      <div className="min-h-screen">
-        <main>
-          <Header />
+      <div className="min-h-screen flex flex-col h-screen justify-between">
+        <Header />
+        <main className="mb-auto">
           <Container>{children}</Container>
-          <Footer />
         </main>
+        <Footer />
       </div>
     </>
   );
