@@ -23,12 +23,22 @@ export function getPost(file: string): Post {
   // parse
   const { data, content } = matter(fileContent);
 
+  let date;
+  const dateString = data["date"];
+  if (dateString) {
+    try {
+      date = new Date(data["date"]);
+    } catch {
+      console.warn(`Failed parsing date ${dateString} for ${path}`);
+    }
+  }
+
   // return
   return {
     path,
     title: data["title"] ?? "",
     excerpt: data["excerpt"] ?? "",
-    date: data["date"] ?? "",
+    dateIsoString: date?.toISOString() ?? null,
     coverImagePath: doesImageCoverExist ? coverImagePath : null,
     content,
   };
@@ -38,5 +48,14 @@ export function getPosts() {
   return getAllFiles(POST_DIR)
     .filter((file) => extname(file).toLowerCase() === ".md")
     .map((file) => getPost(file))
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1)); // sort by date descendingly
+    .sort((post1, post2) => {
+      // sort by date descendingly
+      if (!post1.dateIsoString) {
+        return 1;
+      }
+      if (!post2.dateIsoString) {
+        return -1;
+      }
+      return post1.dateIsoString > post2.dateIsoString ? -1 : 1;
+    });
 }

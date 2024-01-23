@@ -2,7 +2,7 @@ export type Post = {
   path: string;
   title: string;
   excerpt: string | null;
-  date: string;
+  dateIsoString: string | null;
   coverImagePath: string | null;
   content: string;
 };

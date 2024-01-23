@@ -11,17 +11,16 @@ import Link from "next/link";
 const Greeting = () => {
   return (
     <>
-      <article className="prose dark:prose-invert lg:prose-xl">
+      <article className="prose dark:prose-invert lg:prose-xl mb-16">
         <h2>Thanks for visiting</h2>
-        <div>
-          <p>
-            This wiki site is a collection of my personal learning notes and
-            some utility tools. It is under slow construction but you are
-            welcome to check out existing resources.
-          </p>
+        <p>
+          This wiki site is a collection of my personal learning notes and some
+          utility tools. It is under slow construction but you are welcome to
+          check out existing resources.
+        </p>
 
-          <p>I hope this helps!</p>
-        </div>
+        <p>I hope this helps!</p>
+        <hr />
       </article>
     </>
   );
@@ -48,14 +47,14 @@ const PostPreview = ({ post }: { post: Post }) => {
         </div>
       )}
       <h3>
-        <Link as={`/posts/${post.path}`} href="/posts/[...slug]">
-          {post.title}
-        </Link>
+        <Link href={`/posts/${post.path}`}>{post.title}</Link>
       </h3>
-      <p>
-        <DateFormatter dateString={post.date} />
-      </p>
-      <p>{post.excerpt}</p>
+      <h4>
+        {post.dateIsoString && (
+          <DateFormatter dateIsoString={post.dateIsoString} />
+        )}
+      </h4>
+      <p className="italic">{post.excerpt}</p>
     </article>
   );
 };
