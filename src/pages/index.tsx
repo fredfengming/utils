@@ -2,15 +2,17 @@ import Head from "next/head";
 import { appConfig } from "../app/app.config";
 import { getPosts } from "../app/post";
 import { LinkItem } from "../components/link-list";
-import PostPreview from "../components/post-preview";
 import SidebarLayout from "../components/sidebar-layout";
 import { Post } from "../entities/post";
+import Image from "next/image";
+import DateFormatter from "../components/date-formatter";
+import Link from "next/link";
 
 const Greeting = () => {
   return (
     <>
       <article className="prose dark:prose-invert lg:prose-xl">
-        <h1>Thanks for visiting</h1>
+        <h2>Thanks for visiting</h2>
         <div>
           <p>
             This wiki site is a collection of my personal learning notes and
@@ -22,6 +24,39 @@ const Greeting = () => {
         </div>
       </article>
     </>
+  );
+};
+
+const PostPreview = ({ post }: { post: Post }) => {
+  return (
+    <article className="prose dark:prose-invert lg:prose-xl">
+      {post.coverImagePath && (
+        <div className="mb-5">
+          <Link
+            as={`/posts/${post.path}`}
+            href="/posts/[...slug]"
+            aria-label={post.title}
+          >
+            <Image
+              src={post.coverImagePath}
+              alt={`Cover Image for ${post.title}`}
+              className="shadow-sm w-full"
+              width={1300}
+              height={630}
+            />
+          </Link>
+        </div>
+      )}
+      <h3>
+        <Link as={`/posts/${post.path}`} href="/posts/[...slug]">
+          {post.title}
+        </Link>
+      </h3>
+      <p>
+        <DateFormatter dateString={post.date} />
+      </p>
+      <p>{post.excerpt}</p>
+    </article>
   );
 };
 
@@ -44,14 +79,14 @@ export default function Index({
         <Greeting />
 
         {posts.length > 0 && (
-          <section>
-            <h1 className="mb-8 text-5xl font-bold">Recent Posts</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
+          <article className="prose dark:prose-invert lg:prose-xl">
+            <h2>Recent Posts</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-8 md:gap-y-16">
               {posts.map((post) => (
                 <PostPreview post={post} />
               ))}
             </div>
-          </section>
+          </article>
         )}
       </SidebarLayout>
     </>
