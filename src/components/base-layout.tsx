@@ -48,7 +48,7 @@ const Header = () => {
           <div className="flex flex-nowrapflex-row-reverse">
             <div className="flex-auto m-auto">
               <Link
-                className="bg-black bg-opacity-50 text-5xl font-bold p-1 md:p-4"
+                className="bg-black bg-opacity-50 text-2xl md:text-4xl font-bold p-1 md:p-4"
                 href="/"
                 rel="home"
               >

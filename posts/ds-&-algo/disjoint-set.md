@@ -1,7 +1,7 @@
 ---
 title: "并查集(Disjoint Set)学习笔记"
 excerpt: "并查集简介及示例代码"
-date: "2020-03-16T05:35:07.322Z"
+date: "2024-01-24"
 ---
 
 # 并查集(Disjoint Set)学习笔记
