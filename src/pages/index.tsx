@@ -13,6 +13,7 @@ const Greeting = () => {
     <>
       <article className="prose dark:prose-invert lg:prose-xl mb-16">
         <h2>Thanks for visiting</h2>
+        <hr />
         <p>
           This wiki site is a collection of my personal learning notes and some
           utility tools. It is under slow construction but you are welcome to
@@ -20,7 +21,6 @@ const Greeting = () => {
         </p>
 
         <p>I hope this helps!</p>
-        <hr />
       </article>
     </>
   );
@@ -28,9 +28,12 @@ const Greeting = () => {
 
 const PostPreview = ({ post }: { post: Post }) => {
   return (
-    <article className="prose dark:prose-invert lg:prose-xl">
+    <article>
+      <h3>
+        <Link href={`/posts/${post.path}`}>{post.title}</Link>
+      </h3>
       {post.coverImagePath && (
-        <div className="mb-5">
+        <div className="">
           <Link
             as={`/posts/${post.path}`}
             href="/posts/[...slug]"
@@ -46,9 +49,6 @@ const PostPreview = ({ post }: { post: Post }) => {
           </Link>
         </div>
       )}
-      <h3>
-        <Link href={`/posts/${post.path}`}>{post.title}</Link>
-      </h3>
       <h4>
         {post.dateIsoString && (
           <DateFormatter dateIsoString={post.dateIsoString} />
@@ -80,6 +80,7 @@ export default function Index({
         {posts.length > 0 && (
           <article className="prose dark:prose-invert lg:prose-xl">
             <h2>Recent Posts</h2>
+            <hr />
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-8 md:gap-y-16">
               {posts.map((post) => (
                 <PostPreview post={post} />

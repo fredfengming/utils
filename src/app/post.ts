@@ -11,18 +11,28 @@ export function getPost(file: string): Post {
   // init
   const path = file.replace(".md", "");
   const localPath = resolve(POST_DIR, file);
-  const coverImagePath = join("/assets/posts", path + ".cover.jpg");
-  const coverImageLocalPath = resolve(COVER_IMAGE_DIR, path + ".cover.jpg");
+  const coverJpgImagePath = join("/assets/posts", path + ".cover.jpg");
+  const coverJpgImageLocalPath = resolve(COVER_IMAGE_DIR, path + ".cover.jpg");
+  const coverPngImagePath = join("/assets/posts", path + ".cover.png");
+  const coverPngImageLocalPath = resolve(COVER_IMAGE_DIR, path + ".cover.png");
 
-  // load
+  // check cover image
+  let coverImagePath = null;
+  if (
+    fs.existsSync(coverJpgImageLocalPath) &&
+    fs.statSync(coverJpgImageLocalPath).isFile()
+  ) {
+    coverImagePath = coverJpgImagePath;
+  } else if (
+    fs.existsSync(coverPngImageLocalPath) &&
+    fs.statSync(coverPngImageLocalPath).isFile()
+  ) {
+    coverImagePath = coverPngImagePath;
+  }
+
+  // load content
   const fileContent = fs.readFileSync(localPath, "utf8");
-  const doesImageCoverExist =
-    fs.existsSync(coverImageLocalPath) &&
-    fs.statSync(coverImageLocalPath).isFile();
-
-  // parse
   const { data, content } = matter(fileContent);
-
   let date;
   const dateString = data["date"];
   if (dateString) {
@@ -39,7 +49,7 @@ export function getPost(file: string): Post {
     title: data["title"] ?? "",
     excerpt: data["excerpt"] ?? "",
     dateIsoString: date?.toISOString() ?? null,
-    coverImagePath: doesImageCoverExist ? coverImagePath : null,
+    coverImagePath,
     content,
   };
 }
